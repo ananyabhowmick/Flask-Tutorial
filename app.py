@@ -1,32 +1,19 @@
-from flask import Flask # flask → library, Flask → class
-from uuid import UUID  # UUID : Unique User ID
+from flask import Flask, request # flask → library, Flask → class
 
 app = Flask(__name__) #Creating the Flask application
 
-@app.route("/") # "/" represents the URL path. @app.route() called Decorator connects a URL to a Python function. Run the function associated with /.
-def home():
-    return "Hello Flask"
+@app.route("/search") # Query Parameter
+def search(): 
+    #here query parameter is "name", Default Parameter is "Guest"
+    # if we don't use Default Parameter then it returns "None"
+    name = request.args.get("name", "Guest") # "name" > key, request.arg.get("name") > extract the value from key and store into name
+    course = request.args.get("course", "Unknown")
+    
+    return f"{name} is learning {course}"
 
+# Single Query parameter URL: "http://127.0.0.1:5000/search?name=Ananya"
+# Multiple Query Parameter URL: "http://127.0.0.1:5000/search?name=Ananya&course=Flask"
 
-@app.route("/user/<int:id>") # Integer URL Converter, Dynamic Routing
-def user(id):
-    return f"User ID: {id}"
-
-@app.route("/price/<float:amount>") # Float URL converter
-def price(amount):
-    return f"Price: {amount}"
-
-@app.route("/users/<string:name>") # String URL Converter
-def users(name):
-    return f"Users name: {name}"
-
-@app.route("/files/<path:file_path>") # Path converter
-def files(file_path):
-    return file_path
-
-@app.route("/student/<uuid:user_id>") # UUID converter
-def student(user_id): #Flask expects a very specific 36-character hexadecimal format (8-4-4-4-12 digits separated by hyphens).
-    return str(user_id)
 
 # Running the application
 if __name__ == "__main__":

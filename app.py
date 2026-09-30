@@ -6,13 +6,17 @@ app = Flask(__name__) #Creating the Flask application
 def home():
     return "Hello Flask"
 
-@app.route("/about")
-def about():
-    return "Welcome to about page"
+@app.route("/users") # static route: it has straight forward route
+def users():
+    return "Welcome to User Page"
 
-@app.route("/contact")
-def contact():
-    return "Welcome to contact page"
+@app.route("/user/<name>") # Dynamic Routing
+def user(name):
+    return f"Hello {name}"
+
+@app.route("/student/<name>/<course>")
+def student(name, course):
+    return f"{name} is learning {course}"
     
 # Running the application
 if __name__ == "__main__":

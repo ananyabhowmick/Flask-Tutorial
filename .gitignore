@@ -1,0 +1,6 @@
+Flask Notes.docx
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env

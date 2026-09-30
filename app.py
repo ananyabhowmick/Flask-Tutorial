@@ -6,6 +6,14 @@ app = Flask(__name__) #Creating the Flask application
 def home():
     return "Hello Flask"
 
+@app.route("/about")
+def about():
+    return "Welcome to about page"
+
+@app.route("/contact")
+def contact():
+    return "Welcome to contact page"
+    
 # Running the application
 if __name__ == "__main__":
     app.run(debug=True) # debug = True If your code has an error, Flask gives you useful debugging information. It also automatically reloads the application when you modify the code.

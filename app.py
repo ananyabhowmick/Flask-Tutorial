@@ -1,18 +1,10 @@
-from flask import Flask, request # flask → library, Flask → class
+from flask import Flask, request, render_template # flask → library, Flask → class
 
 app = Flask(__name__) #Creating the Flask application
 
-@app.route("/search") # Query Parameter
-def search(): 
-    #here query parameter is "name", Default Parameter is "Guest"
-    # if we don't use Default Parameter then it returns "None"
-    name = request.args.get("name", "Guest") # "name" > key, request.arg.get("name") > extract the value from key and store into name
-    course = request.args.get("course", "Unknown")
-    
-    return f"{name} is learning {course}"
-
-# Single Query parameter URL: "http://127.0.0.1:5000/search?name=Ananya"
-# Multiple Query Parameter URL: "http://127.0.0.1:5000/search?name=Ananya&course=Flask"
+@app.route("/") # Query Parameter
+def home():
+    return render_template("index.html") # this is how we add html file in app.py file
 
 
 # Running the application
